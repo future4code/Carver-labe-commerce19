@@ -1,4 +1,5 @@
 
+
 import logo from './logo.svg';
 // import './App.css';
 
@@ -6,7 +7,14 @@ import React from 'react';
 import styled from 'styled-components';
 import CardImagens from './Components/CardImagens'
 
+const ContainerLoja = styled.div`
+  display: flex;
+`
 
+const ItensLoja = styled.div` 
+
+`
+const ItensCarrinho = styled.div` 
 
 const Header = styled.div`
   height: 80px;
@@ -47,10 +55,64 @@ const Footer = styled.div`
   padding-left: 10px;
   border:solid red 1px;
   background-color:blue;
+
   
 `
 
 
+//parte edson
+
+class Appe extends React.Component {
+  state = {
+    itens: [
+      {
+        id: Date.now(),
+        descricao: "Produto 1",
+        preco: 40,
+        carrinho: false
+      }
+    ]
+  }
+
+  selectItem = (id) => {
+    const itemCarrinhoCompra = {
+      id: Date.now(),
+      descricao: this.state.descricao,
+      preco: this.state.preco,
+      carrinho: !this.state.carrinho
+    }
+
+    const novoItemCarrinho = [...this.state.itens, itemCarrinhoCompra];
+
+    this.setState({
+      itens: novoItemCarrinho
+    });
+  };
+
+  render() {
+    const listaItens = this.state.itens.map((item) => {
+      return item.descricao
+    })
+    return (
+      <ContainerLoja>
+
+      
+      <ItensLoja>
+          {listaItens}
+          <button onClick={this.selectItem}>Add</button>
+      </ItensLoja>
+
+      <ItensCarrinho>
+          <h1>
+            Carrinho de compras
+          </h1>
+          {}
+
+        </ItensCarrinho>
+      </ContainerLoja>
+    )
+  }
+=======
 class App extends React.Component{
 
 state = {
@@ -125,9 +187,6 @@ state = {
   }
 
 
-}
-
-export default App;
 
 
 
