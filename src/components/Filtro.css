@@ -2,8 +2,11 @@
     margin-left: 10px;
     margin-top: 15px;
     width: 300px ;
-    /* padding: 10px; */
-
     border: 1px solid black;
     height: 400px;
+}
+
+.elements {
+    margin-left: 5px;
+    
 }

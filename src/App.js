@@ -4,7 +4,7 @@ import Filtro from "./components/Filtro"
 import './App.css';
 
 function App() {
-  return <div className="container" >
+  return <div >
   <Filtro />
     </div>
 };
