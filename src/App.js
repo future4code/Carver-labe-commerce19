@@ -1,26 +1,76 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components"
+const ContainerLoja = styled.div`
+  display: flex;
+`
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const ItensLoja = styled.div` 
+
+`
+const ItensCarrinho = styled.div` 
+  
+`
+
+
+
+class App extends React.Component {
+  state = {
+    itens: [
+      {
+        id: Date.now(),
+        descricao: "Produto 1",
+        preco: 40,
+        carrinho: false
+      }
+    ]
+  }
+
+  selectItem = (id) => {
+    const itemCarrinhoCompra = {
+      id: Date.now(),
+      descricao: this.state.descricao,
+      preco: this.state.preco,
+      carrinho: !this.state.carrinho
+    }
+
+    const novoItemCarrinho = [...this.state.itens, itemCarrinhoCompra];
+
+    this.setState({
+      itens: novoItemCarrinho
+    });
+  };
+
+  render() {
+    const listaItens = this.state.itens.map((item) => {
+      return item.descricao
+    })
+    return (
+      <ContainerLoja>
+
+      
+      <ItensLoja>
+          {listaItens}
+          <button onClick={this.selectItem}>Add</button>
+      </ItensLoja>
+
+      <ItensCarrinho>
+          <h1>
+            Carrinho de compras
+          </h1>
+          {}
+
+        </ItensCarrinho>
+      </ContainerLoja>
+    )
+  }
 }
+
+// function App() {
+//   return (
+//     <div className="App">
+      
+//     </div>
+//   );
+// }
 
 export default App;
