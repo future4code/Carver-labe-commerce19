@@ -4,8 +4,8 @@ import logo from './logo.svg';
 
 import React from 'react';
 import styled from 'styled-components';
-import CardImagens from './Components/CardImagens'
-import Logo from './Components/imgLoja/Logo.jpg'
+import CardImagens from './components/CardImagens'
+import Logo from './components/imgLoja/Logo.jpg'
 
 
 
@@ -18,42 +18,16 @@ const Header = styled.div`
   
 `
 const CardItens = styled.div`
-  /* display: flex;
-  border: 1px solid gray;
-  flex-direction:column;
-  align-items: center; */
-/*   
-  display:grid;
-  grid-template-columns: 1fr 1fr  ; */
-
-  /* row-gap: 10px;
-  column-gap: 10px; */
-  /* margin: 10px;
-  cursor: pointer;
-  border:solid 1px black;  */
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50px;
-  border:solid 1px black; */
-display:flex;
-flex-wrap: wrap;
-max-width:800px;
+  display:flex;
+  flex-wrap: wrap;
+  max-width:800px;
 `;
-
 const Imagens = styled.div`
   flex: 1 1 200px;
 `;
-
-
-
 const TextoLaranja = styled.p`
   color: orange;
 `;
-
-
-
 const Footer = styled.div`
   height: 80px;
   text-align:center;
@@ -62,213 +36,122 @@ const Footer = styled.div`
   background-color:blue;
   
 `
-
-
 class App extends React.Component{
 
-state = {
-
-  itensDaLoja: [
-  
-  {
-    
-    id: 1,
-    name: "Traje Espacial 1",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 2,
-    name: "Traje Espacial 2",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 3,
-    name: "Traje Espacial 3",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 4,
-    name: "Traje Espacial 4",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 5,
-    name: "Traje Espacial 5",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 6,
-    name: "Traje Espacial 6",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
+  state = {
+    item: [
+      {
+        id: 1,
+        name: "Traje Espacial 1",
+        value: "10000.0",
+        cardImage:"https://www.bing.com/th?id=OP.Enn8nOdDDAyHnw474C474&o=5&pid=21.1&w=160&h=160&qlt=100&dpr=1",
+        carrinho: false
+      },
+      {
+        
+        id: 2,
+        name: "Traje Espacial 2",
+        value: "10000.0",
+        cardImage:"https://picsum.photos/200/200",
+        carrinho: false
+      },
+      {
+        id: 3,
+        name: "Traje Espacial 3",
+        value: "10000.0",
+        cardImage:"https://picsum.photos/200/200",
+        carrinho: false
+      },
+      {
+        id: 4,
+        name: "Traje Espacial 4",
+        value: "10000.0",
+        cardImage:"https://picsum.photos/200/200",
+        carrinho: false
+      },
+      {
+        id: 5,
+        name: "Traje Espacial 5",
+        value: "10000.0",
+        cardImage:"https://picsum.photos/200/200",
+        carrinho: false
+      },
+      {
+        id: 6,
+        name: "Traje Espacial 6",
+        value: "10000.0",
+        cardImage:"https://picsum.photos/200/200",
+        carrinho: false
+      }
+    ],
+    numeroAdiconado: 0
   }
 
-],
-
-  adicionado:false,
-  numeroAdiconado: 0
-
-
-
-}
-
-onClickAdicionarItem =() =>{
-  console.log ('adicionou')
-  const adicionadoAtual = this.state.numeroAdiconado
-  const novasAdicoesCarrinho = {numeroAdiconado: adicionadoAtual +1}
-
-  this.setState (novasAdicoesCarrinho)
-  console.log (this.setState)
-
-}
-
-
-
-
-  adicionaItens = () =>{
-
-   
-
-
-    // const novosItens = {
-      
-      // name: this.state.name,
-      // value: this.state.value
-
-
-    // }
-      
-    // const copiaItens = [...this.state.itens, adicionaItens]
-
-    // this.setState ({itens: copiaItens})
-    // this.setState({inputNome:"", inputPreco:""})
-
-
+  listaCarrinho = (itemId) => {
+    console.log("fununcia")
+    const alternaCarrinho = this.state.item.map((item) => {
+      if (itemId === item.id) {
+        const boolean = {
+          ...item,
+          carrinho: true
+        }
+        return boolean
+      } else {
+        return item
+      }
+    })
+    this.setState({ item: alternaCarrinho })
+    console.log(alternaCarrinho)
   }
-
+  renderizaCarrinho = () => {
+  }
 
 
   render () {
 
-    const ListaDeItens = this.state.itensDaLoja.map((itens) =>{
-
-    
-      return (
-        <p>
-          {itens.name} - {itens.value} 
-        </p>
-      );
-    });
-
-
-
     return (
 
-        <div>
-      
-      <body>
-        
-      </body>
+      <div>
       <Header>
-      {/* <img src={Logo}/> */}
-                <p> LOJA ESPACE TODAAAY!!</p>
-            </Header>
+        {/* <img src={Logo}/> */}
+        <p> LOJA ESPACE TODAAAY!!</p>
+      </Header>
 
-            {/* <div>{ListaDeItens}</div> */}
-  <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
+              {/* <div>{ListaDeItens}</div> */}
+    
 
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        
-{/* 
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/209" }
-        nomeProdutos ={"Traje Espacial"}
-       
-        />
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/208"}
-        nomeProdutos ={"Foto da Camisa"}
-        
-        />
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/205"}
-        nomeProdutos ={"Foto da Camisa"}
-      
-        /> */}
-
-   
+        {this.state.item.map((item) => {
+            return (
+              <CardImagens
+                key={item.id}  
+                item={item}
+                listaCarrinho={this.listaCarrinho}
+                
+              />
+            )
+          })
+        }
+        {/* {this.state.item.filter((item) => {
+          
+          if (item.carrinho === true){
+            return (
+              <p>ok</p>
+            )
+          } else {
+            return (
+              <p>nok</p>
+            )
+          }
+          })
+        } */}
         
 
 
 
-
-<Footer> PRODUTOS DE ALTA QUALIDADE!</Footer>
-     
-
-  </div>
-
+      <Footer> PRODUTOS DE ALTA QUALIDADE!</Footer>
+     </div>
     )
-
-
-
   }
-
-
 }
 
 export default App;
