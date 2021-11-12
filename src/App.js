@@ -5,9 +5,11 @@ import  GlobalStyle  from './Components/styles'
 import React from 'react';
 import styled from 'styled-components';
 
+
 import CardImagens from './Components/CardImagens'
 import tema from './Components/imgLoja/tema.jpg'
 import {itensDaLoja} from "./Components/itens";
+
 
 
 
@@ -19,6 +21,7 @@ const Header = styled.div`
   background-color:#004162;
   border-radius:20px;
   
+
  `
 
  const CardContainer= styled.div`
@@ -33,17 +36,17 @@ const Header = styled.div`
 
  `
 
+
+`
 const CardItens = styled.div`
-  
+  display:flex;
+  flex-wrap: wrap;
+  max-width:800px;
 
 `;
-
 const Imagens = styled.div`
   flex: 1 1 200px;
 `;
-
-
-
 const TextoLaranja = styled.p`
   color: orange;
 `;
@@ -58,6 +61,7 @@ const Footer = styled.div`
   
   
 `
+
 
 class App extends React.Component{
 
@@ -92,12 +96,14 @@ adicionarItensCarrinho = (id) =>{
   
 const lista = itensDaLoja.map (produto => { 
 
+
 return <div>
     <p>{produto.name}
     {produto.value}</p>
     <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button>
 
   </div>
+
 
 
 })
@@ -193,9 +199,38 @@ return <div>
         </div>
         
         </CardItens>
+
+return (
+//       <div className="App">
+//         <div>
+//           <input
+//             type="text"
+//             onChange={this.onChangeTextoNovoPost}
+//             value={this.state.textoNovoPost}
+//           />
+//           <button onClick={this.adicionarPost}>Adicionar</button>
+//         </div>
+//         <br />
+//         {this.state.listaDePosts.length > 0 ? this.state.listaDePosts.map(post => {
+//           return (
+//             <Post
+//               key={post.id}
+//               post={post}
+//               alterarCurtida={this.alterarCurtida}
+//               apagarPost={this.apagarPost}
+//             />
+//           );
+//           }) : <p>Sem postagem ainda</p>
+//         }
+//       </div>
+//     );
+//   }
+// }
+
         
 
 </CardContainer>   
+
 
 
 <Footer> <h4>PRODUTOS EM ALTA QUALIDADE!</h4></Footer>
@@ -206,9 +241,8 @@ return <div>
   )
 
     
+
   }
-
-
 }
 
 export default App;
