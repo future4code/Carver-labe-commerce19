@@ -12,28 +12,36 @@ const CardContainer = styled.div`
 grid-template-columns: 1fr 1fr 1fr;
 width: 1000px; */
 
-  /* flex-grow: 1;
-  display:grid;
-  grid-template-columns: 1fr 1fr  ;
-  grid-template-rows: 1fr 1fr ;
-  row-gap: 10px;
-  column-gap: 10px;
-  margin: 10px;
-  cursor: pointer; */
+  /* flex-grow: 1; */
+  /* display:grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr 1fr ; */
+  /* row-gap: 10px;
+  column-gap: 10px; */
+  /* margin: 10px;
+  cursor: pointer;  */
 
-  display: flex;
+  /* display: flex;
   flex-direction:column;
   align-items: center;
   width: 60%;
   margin-left: 250px;
   margin-top: 20px;
   margin-bottom: 20px;
-  
+   */
+
+  display:flex;
+flex-wrap: wrap;
+max-width:800px;
 
 `
 
+
+
 const FotosProdutos = styled.img`
-  width: 40%;
+  width: 50%;
+  border-radius: 50px;
+  border-style:ridge;
 
 `
 const Header = styled.div`
@@ -53,35 +61,16 @@ render () {
     return(
 
         <CardContainer>
-
+          
             <FotosProdutos src={this.props.FotosProdutos} alt={'Imagem do post'}/>
             <p><b> { this.props.nomeProdutos} </b></p>
-            <p> 125,00</p>
+            <p> 1250,00</p>
     
             <p >
                 {this.props.botaoCarrinho}
             <button> Adicionar carrinho</button>
             </p>
 
-            <FotosProdutos src={this.props.FotosProdutos} alt={'Imagem do post'}/>
-            <p><b> { this.props.nomeProdutos} </b></p>
-            <p> 125,00</p>
-
-            <p >
-                {this.props.botaoCarrinho}
-            <button> Adicionar carrinho</button>
-            </p>
-            
-
-            <FotosProdutos src={this.props.FotosProdutos} alt={'Imagem do post'}/>
-            <p><b> { this.props.nomeProdutos} </b></p>
-            <p> 125,00</p>
-
-            <p >
-                {this.props.botaoCarrinho}
-            <button> Adicionar carrinho</button>
-            </p>
-            
 
 
 
