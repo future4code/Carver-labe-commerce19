@@ -1,45 +1,41 @@
 
 import logo from './logo.svg';
 // import './App.css';
-
+import  GlobalStyle  from './Components/styles'
 import React from 'react';
 import styled from 'styled-components';
+
 import CardImagens from './Components/CardImagens'
-import Logo from './Components/imgLoja/Logo.jpg'
+import tema from './Components/imgLoja/tema.jpg'
+import {itensDaLoja} from "./Components/itens";
 
 
 
 const Header = styled.div`
-  height: 80px;
+ height: 100px;
   text-align:center;
   padding-left: 10px;
-  border:solid red 1px;
-  background-color: beige;
+  border:solid #e67213 3px;
+  background-color:#004162;
+  border-radius:20px;
   
-`
-const CardItens = styled.div`
-  /* display: flex;
-  border: 1px solid gray;
-  flex-direction:column;
-  align-items: center; */
-/*   
-  display:grid;
-  grid-template-columns: 1fr 1fr  ; */
+ `
 
-  /* row-gap: 10px;
-  column-gap: 10px; */
-  /* margin: 10px;
-  cursor: pointer;
-  border:solid 1px black;  */
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50px;
-  border:solid 1px black; */
-display:flex;
-flex-wrap: wrap;
-max-width:800px;
+ const CardContainer= styled.div`
+
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr  ;
+  row-gap: 10px;
+  column-gap: 10px; 
+  margin-top: 20px;
+  margin-left: 150px;
+  align-items:center;
+
+ `
+
+const CardItens = styled.div`
+  
+
 `;
 
 const Imagens = styled.div`
@@ -52,220 +48,164 @@ const TextoLaranja = styled.p`
   color: orange;
 `;
 
-
-
 const Footer = styled.div`
   height: 80px;
   text-align:center;
   padding-left: 10px;
-  border:solid red 1px;
-  background-color:blue;
+  border:solid orange 3px;
+  border-style:hidden;
+  background-color:black;
+  
   
 `
-
 
 class App extends React.Component{
 
 state = {
 
-  itensDaLoja: [
-  
-  {
-    
-    id: 1,
-    name: "Traje Espacial 1",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 2,
-    name: "Traje Espacial 2",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 3,
-    name: "Traje Espacial 3",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 4,
-    name: "Traje Espacial 4",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 5,
-    name: "Traje Espacial 5",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  },
-  {
-    
-    id: 6,
-    name: "Traje Espacial 6",
-    value: "10000.0",
-    CardImage:"https://picsum.photos/200/200"
-  }
-
-],
-
-  adicionado:false,
-  numeroAdiconado: 0
-
-
+carrinho: []
 
 }
 
-onClickAdicionarItem =() =>{
-  console.log ('adicionou')
-  const adicionadoAtual = this.state.numeroAdiconado
-  const novasAdicoesCarrinho = {numeroAdiconado: adicionadoAtual +1}
+adicionarItensCarrinho = (id) =>{
 
-  this.setState (novasAdicoesCarrinho)
-  console.log (this.setState)
+  const produto = itensDaLoja.filter (produto =>{
+    return produto.id === id
+    
+  })
 
+    // console.log ("id", id)
+    // console.log ("produto", produto)
+
+    const novoCarrinho = [...this.state.carrinho, produto[0]]
+    console.log ("novo carinho", novoCarrinho)
+
+    this.setState ({carrinho: novoCarrinho})
+    // console.log ("carrinho2",this.state.carrinho)
 }
 
-
-
-
-  adicionaItens = () =>{
-
-   
-
-
-    // const novosItens = {
-      
-      // name: this.state.name,
-      // value: this.state.value
-
-
-    // }
-      
-    // const copiaItens = [...this.state.itens, adicionaItens]
-
-    // this.setState ({itens: copiaItens})
-    // this.setState({inputNome:"", inputPreco:""})
-
-
-  }
 
 
 
   render () {
+// console.log (itensDaLoja)
+  
+const lista = itensDaLoja.map (produto => { 
 
-    const ListaDeItens = this.state.itensDaLoja.map((itens) =>{
+return <div>
+    <p>{produto.name}
+    {produto.value}</p>
+    <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button>
 
-    
-      return (
-        <p>
-          {itens.name} - {itens.value} 
-        </p>
-      );
-    });
+  </div>
+
+
+})
 
 
 
     return (
-
-        <div>
       
-      <body>
-        
-      </body>
-      <Header>
-      {/* <img src={Logo}/> */}
-                <p> LOJA ESPACE TODAAAY!!</p>
-            </Header>
+        <div>
 
-            {/* <div>{ListaDeItens}</div> */}
+          {lista}
+          <GlobalStyle/>
+      { <img className="tema" src={tema}/>}
+      
+      <Header> <h1>ASTRODEV </h1>
+                <h3><em>ESPACE TO GO</em></h3>
+          
+      {/* { <img className="tema" src={tema}/>} */}
+      </Header>
+
+  <CardContainer>        
+
+{/* <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button> */}
+
   <CardItens>
   <img src="https://picsum.photos/200/200"/>
       <div>
           <p><b>Produto da loja</b></p>
           <p>R$ 100,00</p>
           <p></p>
-          <button>Adicionar Carrinho</button>
+          {/* <button className="botao" onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button> */}
+          {/* <button className="botao">Adicionar Carrinho</button> */}
           <p></p>
         </div>
-        
         </CardItens>
-
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        <CardItens>
-  <img src="https://picsum.photos/200/200"/>
-      <div>
-          <p><b>Produto da loja</b></p>
-          <p>R$ 100,00</p>
-          <p></p>
-          <button>Adicionar Carrinho</button>
-          <p></p>
-        </div>
-        
-        </CardItens>
-
-        
-{/* 
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/209" }
-        nomeProdutos ={"Traje Espacial"}
-       
-        />
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/208"}
-        nomeProdutos ={"Foto da Camisa"}
-        
-        />
-        <CardImagens 
-        FotosProdutos={"https://picsum.photos/200/205"}
-        nomeProdutos ={"Foto da Camisa"}
       
-        /> */}
+        <CardItens>
+  <img src="https://picsum.photos/200/200"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
 
-   
+  
+        <CardItens>
+  <img src="https://picsum.photos/200/201"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        </CardItens>
+      
+
+        <CardItens>
+  <img src="https://picsum.photos/200/202"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
+        <CardItens>
+  <img src="https://picsum.photos/200/203"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao"> Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
+       
+        <CardItens>
+  <img src="https://picsum.photos/200/204"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
         
 
+</CardContainer>   
 
 
-
-<Footer> PRODUTOS DE ALTA QUALIDADE!</Footer>
+<Footer> <h4>PRODUTOS EM ALTA QUALIDADE!</h4></Footer>
      
-
+<GlobalStyle/>
   </div>
 
-    )
+  )
 
-
-
+    
   }
 
 
