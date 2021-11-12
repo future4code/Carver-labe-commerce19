@@ -1,8 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
 
-
-
 const CardContainer = styled.div`
   /* border: 1px solid red;
   width: 250px;
@@ -31,13 +29,10 @@ width: 1000px; */
    */
 
   display:flex;
-flex-wrap: wrap;
-max-width:800px;
+  flex-wrap: wrap;
+  max-width:800px;
 
 `
-
-
-
 const FotosProdutos = styled.img`
   width: 50%;
   border-radius: 50px;
@@ -51,39 +46,17 @@ const Header = styled.div`
   padding-left: 10px;
   background-color:blueviolet;
 `
+const CardImagens = (props) => {
 
-
-
-class CardImagens extends React.Component {
-
-render () {
-
-    return(
-
-        <CardContainer>
-          
-            <FotosProdutos src={this.props.FotosProdutos} alt={'Imagem do post'}/>
-            <p><b> { this.props.nomeProdutos} </b></p>
-            <p> 1250,00</p>
-    
-            <p >
-                {this.props.botaoCarrinho}
-            <button> Adicionar carrinho</button>
-            </p>
-
-
-
-
-
-        </CardContainer>
-
-
-    )
-
+  return (
+      <CardContainer>
+        <FotosProdutos src={props.item.cardImage} alt={'Imagem do post'}/>
+        <p><b> {props.item.name} </b></p>
+        <br></br>
+        <p> {props.item.value}</p>
+        <button onClick={() => props.listaCarrinho(props.item.id)}>Adicionar carrinho</button>
+      </CardContainer>
+  )
 
 }
-
-
-}
-
 export default CardImagens;
