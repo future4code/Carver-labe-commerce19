@@ -1,12 +1,17 @@
 
 import logo from './logo.svg';
 // import './App.css';
-import GlobalStyle  from './components/styles'
+import  GlobalStyle  from './Components/styles'
 import React from 'react';
 import styled from 'styled-components';
-import CardImagens from './components/CardImagens'
-import tema from './components/imgLoja/tema.jpg'
-import {itensDaLoja} from "./components/itens";
+
+
+import CardImagens from './Components/CardImagens'
+import tema from './Components/imgLoja/tema.jpg'
+import {itensDaLoja} from "./Components/itens";
+
+
+
 
 const Header = styled.div`
  height: 100px;
@@ -15,8 +20,12 @@ const Header = styled.div`
   border:solid #e67213 3px;
   background-color:#004162;
   border-radius:20px;
-  `
+  
+
+ `
+
  const CardContainer= styled.div`
+
   display:grid;
   grid-template-columns: 1fr 1fr 1fr  ;
   row-gap: 10px;
@@ -26,6 +35,9 @@ const Header = styled.div`
   align-items:center;
 
  `
+
+
+`
 const CardItens = styled.div`
   display:flex;
   flex-wrap: wrap;
@@ -49,166 +61,187 @@ const Footer = styled.div`
   
   
 `
-const FotosProdutos = styled.img`
-  width: 50%;
-  border-radius: 20px;
-  border-style:ridge;
 
-`
+
 class App extends React.Component{
 
 state = {
 
-  carrinho: [],
-  numeroCompras: 0
+carrinho: []
+
 }
 
 adicionarItensCarrinho = (id) =>{
 
-  const produto = itensDaLoja.filter(produto => {
-
+  const produto = itensDaLoja.filter (produto =>{
     return produto.id === id
     
   })
 
     // console.log ("id", id)
     // console.log ("produto", produto)
-    
+
     const novoCarrinho = [...this.state.carrinho, produto[0]]
     console.log ("novo carinho", novoCarrinho)
 
     this.setState ({carrinho: novoCarrinho})
     // console.log ("carrinho2",this.state.carrinho)
-  
-    // const comprasAtual = 
-    // console.log(Number(this.state.produto.value))
-
-    
 }
 
 
 
 
   render () {
-    // console.log (itensDaLoja)
-    // const lista = itensDaLoja.map (produto => { 
-    // return <CardContainer>
-    //     <p>
-    //       {produto.name}
-    //       {produto.value}
-    //       <FotosProdutos src={produto.CardImage} alt={'Imagem do post'}/>
-    //     </p>
-        // <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button>
+// console.log (itensDaLoja)
+  
+const lista = itensDaLoja.map (produto => { 
 
-    //   </CardContainer>
-    // })
+
+return <div>
+    <p>{produto.name}
+    {produto.value}</p>
+    <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button>
+
+  </div>
+
+
+
+})
+
+
+
     return (
-      <div>
-        {/* {lista} */}
-        <GlobalStyle/>
-          {<img className="tema" src={tema}/>}
       
-          <Header>
-            <h1>ASTRODEV </h1>
-            <h3><em>ESPACE TO GO</em></h3>
-          </Header>
+        <div>
 
-          <CardContainer>  
-        {/*             
-          <CardItens>
-            <img src="https://picsum.photos/200/200"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <p></p>
-            </div>
-          </CardItens>
-        
-          <CardItens>
-            <img src="https://picsum.photos/200/200"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <button className="botao">Adicionar Carrinho</button>
-            <p></p>
-            </div>
-          </CardItens>
-          <CardItens>
-            <img src="https://picsum.photos/200/201"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <button className="botao">Adicionar Carrinho</button>
-            <p></p>
-            </div>
-          </CardItens>
-          <CardItens>
-            <img src="https://picsum.photos/200/202"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <button className="botao">Adicionar Carrinho</button>
-            <p></p>
-            </div>
-          </CardItens>
-          <CardItens>
-            <img src="https://picsum.photos/200/203"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <button className="botao"> Adicionar Carrinho</button>
-            <p></p>
-            </div>
-          </CardItens>
-          <CardItens>
-            <img src="https://picsum.photos/200/204"/>
-            <div>
-            <p><b>Produto da loja</b></p>
-            <p>R$ 100,00</p>
-            <p></p>
-            <button className="botao">Adicionar Carrinho</button>
-            <p></p>
-            </div>
-          </CardItens> */}
-          {itensDaLoja.map((produto) => {
-              return (
-                <div>
-                  <FotosProdutos src={produto.CardImage} alt={'Imagem do post'}/>
-                  <p><b> {produto.name} </b></p>
-                  <br></br>
-                  <p> {produto.value}</p>
-                  <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button>
-                </div>
-              )
-            })
-          }
-
-          {this.state.carrinho.map(produto => {
-            let somaCarrinho = 0
-            return (
-              <div>
-              <p><b> {produto.name} </b></p>
-              <p> {Number(produto.value)}</p>
-
-                
-              </div>
-            )
-          })}
-
+          {lista}
+          <GlobalStyle/>
+      { <img className="tema" src={tema}/>}
+      
+      <Header> <h1>ASTRODEV </h1>
+                <h3><em>ESPACE TO GO</em></h3>
           
-          </CardContainer> 
+      {/* { <img className="tema" src={tema}/>} */}
+      </Header>
+
+  <CardContainer>        
+
+{/* <button onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button> */}
+
+  <CardItens>
+  <img src="https://picsum.photos/200/200"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          {/* <button className="botao" onClick = {() => this.adicionarItensCarrinho(produto.id)}>Adicionar</button> */}
+          {/* <button className="botao">Adicionar Carrinho</button> */}
+          <p></p>
+        </div>
+        </CardItens>
+      
+        <CardItens>
+  <img src="https://picsum.photos/200/200"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
         
-          <Footer>
-          <h4>PRODUTOS EM ALTA QUALIDADE!</h4>
-          </Footer>
-        <GlobalStyle/>
-      </div>
-    )
+        </CardItens>
+
+  
+        <CardItens>
+  <img src="https://picsum.photos/200/201"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        </CardItens>
+      
+
+        <CardItens>
+  <img src="https://picsum.photos/200/202"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
+        <CardItens>
+  <img src="https://picsum.photos/200/203"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao"> Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
+       
+        <CardItens>
+  <img src="https://picsum.photos/200/204"/>
+      <div>
+          <p><b>Produto da loja</b></p>
+          <p>R$ 100,00</p>
+          <p></p>
+          <button className="botao">Adicionar Carrinho</button>
+          <p></p>
+        </div>
+        
+        </CardItens>
+
+return (
+//       <div className="App">
+//         <div>
+//           <input
+//             type="text"
+//             onChange={this.onChangeTextoNovoPost}
+//             value={this.state.textoNovoPost}
+//           />
+//           <button onClick={this.adicionarPost}>Adicionar</button>
+//         </div>
+//         <br />
+//         {this.state.listaDePosts.length > 0 ? this.state.listaDePosts.map(post => {
+//           return (
+//             <Post
+//               key={post.id}
+//               post={post}
+//               alterarCurtida={this.alterarCurtida}
+//               apagarPost={this.apagarPost}
+//             />
+//           );
+//           }) : <p>Sem postagem ainda</p>
+//         }
+//       </div>
+//     );
+//   }
+// }
+
+        
+
+</CardContainer>   
+
+
+
+<Footer> <h4>PRODUTOS EM ALTA QUALIDADE!</h4></Footer>
+     
+<GlobalStyle/>
+  </div>
+
+  )
+
+    
+
   }
 }
 
